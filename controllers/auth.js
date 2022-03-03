@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken'); // to generate signed token
-const expressJwt = require('express-jwt'); // for authorization check 
+const jwt = require('jsonwebtoken'); 
+const expressJwt = require('express-jwt'); 
 
 // Config Variables
 require('dotenv').config();
@@ -51,8 +51,8 @@ exports.signup = async(req, res) => {
 
         from : process.env.NAME + '<'+ (process.env.EMAILID)+'>' ,
         to : user.email,
-        subject : "Welcome to Dev Bookstore",
-        text : "Hello " + user.name + ", \n\nWelcome to Dev BookStore. This is a fully functional e-commerce app built on MERN stack along with payment gateway. \nAny suggestions are always welcome. \n\nRegards, \nAnant Mathur"
+        subject : "Welcome to Bookstore",
+        text : "Hello " + user.name + ", \n\nWelcome to BookStore. \nAny suggestions are always welcome. \n\nRegards, \nDinesh Tamang"
     };
 
     transporter.sendMail(HelperOptions,(err,info)=>{
@@ -91,7 +91,7 @@ exports.signin = async(req, res) => {
     }
 
     else
-    return res.status(400).json({err: "Email not fuond"})
+    return res.status(400).json({err: "Email not found"})
 
 
 };
@@ -104,7 +104,8 @@ exports.signout = async(req, res) => {
 
 // Use as middleware to protect routes
 exports.requireSignin = expressJwt({
-    secret: process.env.JWT_SECRET,
+    secret:"thisoursecret",
+    algorithms: ['HS256'],
     userProperty: "auth"
 });
 

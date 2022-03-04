@@ -1,8 +1,8 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 // const path = require("path");
 
-// Database
 const mongoose = require("mongoose");
 
 // Middleware utilities
@@ -10,7 +10,6 @@ const morgan = require("morgan");
 // const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 // const expressValidator = require("express-validator");
-const cors = require("cors");
 
 // Config Variables
 require("dotenv").config();
@@ -32,12 +31,12 @@ mongoose.connect(url, {
   .then(() => console.log("Database Connected..."));
 
 // Middlewares
-app.use(morgan("dev"));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(morgan("dev"));
 // app.use(expressValidator());
-app.use(cors());
 
 
 app.get("/", (req, res)=> {

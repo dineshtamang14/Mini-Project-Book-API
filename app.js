@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const path = require("path");
+// const path = require("path");
 
 // Database
 const mongoose = require("mongoose");
@@ -27,16 +27,16 @@ const orderRoutes = require("./routes/order");
 mongoose
   .connect(process.env.DATABASE, {
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log("Database Connected..."));
 
 // Middlewares
 app.use(morgan("dev"));
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(expressValidator());
+// app.use(expressValidator());
 app.use(cors());
 
 

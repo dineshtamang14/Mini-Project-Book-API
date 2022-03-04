@@ -7,9 +7,9 @@ const mongoose = require("mongoose");
 
 // Middleware utilities
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const expressValidator = require("express-validator");
+// const expressValidator = require("express-validator");
 const cors = require("cors");
 
 // Config Variables
@@ -23,9 +23,9 @@ const productRoutes = require("./routes/product");
 const braintreeRoutes = require("./routes/braintree");
 const orderRoutes = require("./routes/order");
 
-// MongoDB Setup
-mongoose
-  .connect(process.env.DATABASE, {
+
+const url = "mongodb+srv://dinesh:dinesh1997@cluster0.cuuqa.mongodb.net/BookDB-api?retryWrites=true&w=majority"
+mongoose.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
